@@ -1,0 +1,55 @@
+swagger: '2.0'
+info:
+  title: 01-helloworld API
+  version: '1.0.0'
+  description: >
+    HelloWorld API
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /:
+    get:
+      tags:
+        - messages
+      operationId: app.get_messages_root
+      summary: Get messages
+      responses:
+        200:
+          description: Return a list of messages
+          schema:
+            type: object
+            properties:
+              messages:
+                type: array
+                items:
+                  $ref: '#/definitions/Message'
+  /messages:
+    get:
+      tags:
+        - messages
+      operationId: app.get_messages
+      summary: Get messages
+      responses:
+        200:
+          description: Return a list of messages
+          schema:
+            type: object
+            properties:
+              messages:
+                type: array
+                items:
+                  $ref: '#/definitions/Message'
+definitions:
+  Message:
+    type: object
+    required:
+      - msg
+    properties:
+      msg:
+        type: string
+        description: A message
+        example: 'Hello World'
+        minLength: 1
+        maxLength: 100
