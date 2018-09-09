@@ -9,6 +9,9 @@ consumes:
 produces:
   - application/json
 basePath: /
+host: localhost:8080
+schemes:
+  - http
 tags:
   - name: messages
     description: A list of messages
