@@ -8,6 +8,9 @@ def get_messages(n: int = 10):
 def get_messages_root():
     return get_messages(25)
 
+def get_message():
+    return "Hello World!"
+
 logging.basicConfig(level=logging.INFO)
 app = connexion.App(__name__)
 app.add_api('swagger.yaml')

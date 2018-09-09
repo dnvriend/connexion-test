@@ -8,6 +8,12 @@ consumes:
   - application/json
 produces:
   - application/json
+basePath: /
+tags:
+  - name: messages
+    description: A list of messages
+  - name: message
+    description: A message
 paths:
   /:
     get:
@@ -19,12 +25,8 @@ paths:
         200:
           description: Return a list of messages
           schema:
-            type: object
-            properties:
-              messages:
-                type: array
-                items:
-                  $ref: '#/definitions/Message'
+            $ref: '#/definitions/Messages'
+
   /messages:
     get:
       tags:
@@ -35,12 +37,28 @@ paths:
         200:
           description: Return a list of messages
           schema:
-            type: object
-            properties:
-              messages:
-                type: array
-                items:
-                  $ref: '#/definitions/Message'
+            $ref: '#/definitions/Messages'
+
+  /messages/{id}:
+    get:
+      tags:
+        - message
+      operationId: app.get_message
+      summary: get a message
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          description: The id of the message
+          required: true
+      responses:
+        200:
+          description: Return a message
+          schema:
+            $ref: '#/definitions/Message'
+        404:
+          description: Not found
+
 definitions:
   Message:
     type: object
@@ -53,3 +71,17 @@ definitions:
         example: 'Hello World'
         minLength: 1
         maxLength: 100
+    example:
+      msg: 'Hello World'
+
+  Messages:
+    type: object
+    properties:
+      messages:
+        type: array
+        items:
+          $ref: '#/definitions/Message'
+    example:
+      - msg: 'Hello World 1'
+      - msg: 'Hello World 2'
+      - msg: 'Hello World 3'

@@ -9,6 +9,7 @@ gevent = "*"
 greenlet = {version = "*", platform_python_implementation="=='CPython'"}
 
 [dev-packages]
+openapi-spec-validator = "*"
 
 [requires]
 python_version = "3.7"
